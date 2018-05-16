@@ -5,7 +5,9 @@
 <script>
     import defaultsDeep from 'lodash.defaultsdeep'
     import 'fullcalendar'
-    import $ from 'jquery'
+	import $ from 'jquery'
+	//以不破壞原專案架構為原則，使用載入的方式作預設設定
+	import defaultProps from './defaultProps.js'
 
     export default {
         props: {
@@ -81,7 +83,7 @@
                     aspectRatio: 2,
                     timeFormat: 'HH:mm',
                     events: this.events,
-                    eventSources: this.eventSources,
+					eventSources: this.eventSources,
 
                     eventRender(...args) {
                         if (this.sync) {
@@ -110,7 +112,8 @@
 
                     dayClick(...args){
                         self.$emit('day-click', ...args)
-                    },
+					},
+					
                     select(start, end, jsEvent, view, resource) {
                         self.$emit('event-created', {
                             start,
@@ -119,7 +122,25 @@
                             view,
                             resource
                         })
-                    }
+					},
+					
+					...defaultProps,
+					eventMouseover: (event, jsEvent, view) => {
+						// 滑鼠移到行程上的效果
+						this.$(jsEvent.currentTarget).css('box-shadow', '1px 1px 8px 1px #AAA')
+						jsEvent.currentTarget.title = event.title
+						self.$emit('event-mouseover', event, jsEvent, view)
+					},
+					eventMouseout: (event, jsEvent, view) => {
+						this.$(jsEvent.currentTarget).css('box-shadow', '')
+						self.$emit('event-mouseout', event, jsEvent, view)
+					},
+					viewRender: (view, element) => {
+						// 六日紅背景
+						this.$(element).find('td.fc-day.fc-sat').css('background-color', '#FFDDDD99')
+						this.$(element).find('td.fc-day.fc-sun').css('background-color', '#FFDDDD99')
+						self.$emit('view-render', view, element)
+                    },
                 }
             },
         },
