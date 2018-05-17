@@ -1,5 +1,5 @@
 module.exports = {
-	locale: 'zh-tw',
+	// locale: 'zh-tw',
 	slotLabelFormat: 'a h(:mm)',
 	firstDay: 1, // [0-6] -> [日-六]
 	minTime: '06:00:00',
@@ -10,6 +10,12 @@ module.exports = {
 	views: {
         month: {
 			titleFormat: 'YYYY MMMM'
-		}
+        },
+        week: {
+            titleFormat: 'YYYY MMMDo'
+        },
+        day: {
+            titleFormat: 'YYYY MMMD'
+        }
 	}
 }

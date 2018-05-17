@@ -127,7 +127,7 @@
 					...defaultProps,
 					eventMouseover: (event, jsEvent, view) => {
 						// 滑鼠移到行程上的效果
-						this.$(jsEvent.currentTarget).css('box-shadow', '1px 1px 8px 1px #AAA')
+						this.$(jsEvent.currentTarget).css('box-shadow', '1px 1px 8px 1px #666')
 						jsEvent.currentTarget.title = event.title
 						self.$emit('event-mouseover', event, jsEvent, view)
 					},
@@ -146,9 +146,15 @@
         },
 
         mounted() {
-            const cal = $(this.$el),
-                self = this
-
+            const cal = $(this.$el)
+			self = this
+			//點擊中間區塊(不一定是title)
+			// this.$(cal).ready(() => {
+            //     this.$(cal).find('div.fc-center').on('click', (event) => {
+            //         console.log('center clicked')
+            //     })
+			// })
+			
             this.$on('remove-event', (event) => {
                 if(event && event.hasOwnProperty('id')){
                     $(this.$el).fullCalendar('removeEvents', event.id);
