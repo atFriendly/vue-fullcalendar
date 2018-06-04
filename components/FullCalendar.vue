@@ -8,6 +8,7 @@
 	import $ from 'jquery'
 	//以不破壞原專案架構為原則，使用載入的方式作預設設定
 	import defaultProps from './defaultProps.js'
+	import './fullcalendar.css'
 
     export default {
         props: {

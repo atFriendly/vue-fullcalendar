@@ -1,0 +1,11 @@
+.fc-event .fc-content {
+    position: relative;
+    z-index: 2;
+    padding-top: 2px;
+    padding-left: 2px;
+}
+
+td .fc-day.fc-sat,
+td .fc-day.fc-sun {
+    background-color: #FFDDDD99
+}
