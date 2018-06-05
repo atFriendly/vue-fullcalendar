@@ -144,6 +144,15 @@
 						// 六日紅背景
 						this.$(element).find('td.fc-day.fc-sat').css('background-color', '#FFDDDD99')
 						this.$(element).find('td.fc-day.fc-sun').css('background-color', '#FFDDDD99')
+						// 點擊標題事件
+                        this.$('div#calendar').find('div.fc-center').css({
+                            'cursor': 'pointer',
+                            'user-select': 'none'
+                        })
+						this.$('div#calendar').find('div.fc-center').off('click')
+                        this.$('div#calendar').find('div.fc-center').on('click', () => {
+							self.$emit('title-click')
+						})
 						self.$emit('view-render', view, element)
                     },
                 }
