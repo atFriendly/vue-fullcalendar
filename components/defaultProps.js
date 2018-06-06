@@ -14,10 +14,10 @@ module.exports = {
 	showNonCurrentDates: false,
 	views: {
         month: {
-			titleFormat: 'YYYY MMMM'
+			titleFormat: '\ ' // 'YYYY MMMM'
         },
         week: {
-            titleFormat: 'YYYY MMMDo'
+            titleFormat: '\ ' // 'YYYY MMMDo'
         },
         day: {
             titleFormat: 'YYYY MMMD'
