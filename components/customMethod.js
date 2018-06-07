@@ -87,3 +87,7 @@ exports.updateButton = (id, val = {}) => {
         }
     }
 }
+
+exports.setTitle = (text) => {
+    $('div.fc-center').html('<h2>' + text + '</h2>')
+}
