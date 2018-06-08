@@ -14,7 +14,8 @@ module.exports = {
 	showNonCurrentDates: false,
 	views: {
         month: {
-			titleFormat: '\ ' // 'YYYY MMMM'
+			titleFormat: '\ ', // 'YYYY MMMM'
+			columnHeaderFormat: 'dddd'
         },
         week: {
             titleFormat: '\ ' // 'YYYY MMMDo'
