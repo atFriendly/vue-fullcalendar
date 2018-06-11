@@ -89,5 +89,10 @@ exports.updateButton = (id, val = {}) => {
 }
 
 exports.setTitle = (text) => {
-    $('div.fc-center').html('<h2>' + text + '</h2>')
+	$('div.fc-center').html('<h3 style="margin: 0px; margin-top: 5px;">' + text + '</h3>')
+	$('div.fc-center').attr('title', text)
+	// 點擊標題事件
+    $('div.fc-center').on('click', () => {
+        self.$emit('title-click')
+    })
 }

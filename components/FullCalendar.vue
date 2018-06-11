@@ -159,12 +159,6 @@
             const cal = $(this.$el)
             self = this
             customMethod.initVar($, cal, this)
-			//點擊標題事件
-            this.$(cal).ready(() => {
-                this.$(cal).find('div.fc-center').on('click', () => {
-                    self.$emit('title-click')
-                })
-            })
 
             this.$on('remove-event', (event) => {
                 if(event && event.hasOwnProperty('id')){
