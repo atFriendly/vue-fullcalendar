@@ -7,7 +7,7 @@
     import 'fullcalendar'
 	import $ from 'jquery'
 	//以不破壞原專案架構為原則，使用載入的方式作預設設定
-    import defaultProps from './defaultProps.js'
+    import customProps from './customProps.js'
     import customMethod from './customMethod.js'
     import './fullcalendar.css'
 
@@ -86,7 +86,7 @@
                     timeFormat: 'HH:mm',
                     events: this.events,
                     eventSources: this.eventSources,
-                    ...defaultProps,
+                    ...customProps,
 
                     eventRender(...args) {
                         if (this.sync) {
