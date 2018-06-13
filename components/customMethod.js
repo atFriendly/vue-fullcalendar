@@ -40,17 +40,6 @@ exports.setTopRightButtons = (buttons = []) => {
         })
         elementPanel.appendChild(button)
 
-        // const badge = document.createElement('sup')
-        // const displayBadge = val.badge && val.badge.toString().length > 0;
-        // $(badge).addClass('el-badge__content is-fixed')
-        // $(badge).text(val.badge)
-        // $(badge).css({
-        //     'display': displayBadge ? 'inline-block' : 'none',
-        //     'z-index': 10,
-        //     'right': '15px'
-        // })
-        // elementPanel.appendChild(badge)
-
         $(cal).find('div.fc-right')[0].appendChild(elementPanel)
     })
 }
