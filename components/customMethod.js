@@ -82,6 +82,6 @@ exports.setTitle = (text) => {
 	$('div.fc-center').attr('title', text)
 	// 點擊標題事件
     $('div.fc-center').on('click', () => {
-        self.$emit('title-click')
+        that.$emit('title-click')
     })
 }

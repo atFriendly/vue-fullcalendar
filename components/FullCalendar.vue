@@ -75,7 +75,7 @@
 
         computed: {
             defaultConfig() {
-                const self = this
+                const vm = this
                 return {
                     header: this.header,
                     defaultView: this.defaultView,
@@ -90,39 +90,39 @@
 
                     eventRender(...args) {
                         if (this.sync) {
-                            self.events = cal.fullCalendar('clientEvents')
+                            vm.events = cal.fullCalendar('clientEvents')
                         }
-                        self.$emit('event-render', ...args)
+                        vm.$emit('event-render', ...args)
                     },
 
                     eventDestroy(event) {
                         if (this.sync) {
-                            self.events = cal.fullCalendar('clientEvents')
+                            vm.events = cal.fullCalendar('clientEvents')
                         }
                     },
 
                     eventClick(...args) {
-                        self.$emit('event-selected', ...args)
+                        vm.$emit('event-selected', ...args)
                     },
 
                     eventDrop(...args) {
-                        self.$emit('event-drop', ...args)
+                        vm.$emit('event-drop', ...args)
                     },
 
                     eventReceive(...args) {
-                        self.$emit('event-receive', ...args)
+                        vm.$emit('event-receive', ...args)
                     },
 
                     eventResize(...args) {
-                        self.$emit('event-resize', ...args)
+                        vm.$emit('event-resize', ...args)
                     },
 
                     dayClick(...args){
-                        self.$emit('day-click', ...args)
+                        vm.$emit('day-click', ...args)
 					},
 
                     select(start, end, jsEvent, view, resource) {
-                        self.$emit('event-created', {
+                        vm.$emit('event-created', {
                             start,
                             end,
                             allDay: !start.hasTime() && !end.hasTime(),
@@ -134,11 +134,11 @@
 						// 滑鼠移到行程上的效果
 						this.$(jsEvent.currentTarget).css('box-shadow', '1px 1px 8px 1px #666')
 						jsEvent.currentTarget.title = event.title
-						self.$emit('event-mouseover', event, jsEvent, view)
+						vm.$emit('event-mouseover', event, jsEvent, view)
 					},
 					eventMouseout: (event, jsEvent, view) => {
 						this.$(jsEvent.currentTarget).css('box-shadow', '')
-						self.$emit('event-mouseout', event, jsEvent, view)
+						vm.$emit('event-mouseout', event, jsEvent, view)
 					},
 					viewRender: (view, element) => {
 						// 六日紅背景
@@ -149,7 +149,7 @@
                             'cursor': 'pointer',
                             'user-select': 'none',
                         })
-						self.$emit('view-render', view, element)
+						vm.$emit('view-render', view, element)
                     },
                 }
             },
@@ -157,7 +157,7 @@
 
         mounted() {
             const cal = $(this.$el)
-            self = this
+            this.vm = this
             customMethod.initVar($, cal, this)
 
             this.$on('remove-event', (event) => {
