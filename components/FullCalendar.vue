@@ -145,7 +145,9 @@
                         vm.$emit('event-dragstart', event, jsEvent, ui, view)
                     },
                     eventDragStop: (event, jsEvent, ui, view) => {
-						this.checkDropInUndecidedZone(jsEvent.clientX, jsEvent.clientY)
+						setTimeout(() => {
+                            this.checkDropInUndecidedZone(jsEvent.clientX, jsEvent.clientY)
+                        }, 100)
                         vm.$emit('event-dragstop', event, jsEvent, ui, view)
                     },
 					viewRender: (view, element) => {
