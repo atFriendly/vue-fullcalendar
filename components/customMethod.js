@@ -119,6 +119,9 @@ exports.destoryUndecidedZone = () => {
 }
 
 exports.checkDropInUndecidedZone = (x = 0, y = 0) => {
+	if (!that.config.showUndecideZone) {
+        return false
+    }
     const zone = $('#undecided-zone')
     let inZone = false
     if (zone) {
