@@ -85,3 +85,52 @@ exports.setTitle = (text) => {
         that.$emit('title-click')
     })
 }
+
+exports.createUndecidedZone = () => {
+    if (!that.config.showUndecideZone) {
+        return
+    }
+    const zone = document.createElement('span')
+    $(zone).attr('id', 'undecided-zone')
+    $(zone).css({
+        'height': '150px',
+        'width': '200px',
+        'position': 'absolute',
+        'top': '130px',
+        'right': '5px',
+        'z-index': 10,
+        'background-color': '#D9534F22',
+        'text-align': 'center'
+    })
+    const text = document.createElement('span')
+    $(text).css({
+        'font-size': '20px',
+        'color': '#D9534F',
+        'display': 'block',
+        'margin-top': '50px'
+    })
+    $(text).text('拖曳至未定')
+    zone.appendChild(text)
+    $('#calendar')[0].appendChild(zone)
+}
+
+exports.destoryUndecidedZone = () => {
+    $('#undecided-zone').remove()
+}
+
+exports.checkDropInUndecidedZone = (x = 0, y = 0) => {
+    const zone = $('#undecided-zone')
+    let inZone = false
+    if (zone) {
+        let offset = zone.offset()
+        offset.right = zone.width() + offset.left
+        offset.bottom = zone.height() + offset.top
+
+        if (x >= offset.left && y >= offset.top
+            && x <= offset.right && y <= offset.bottom) {
+            inZone = true
+        }
+    }
+    this.destoryUndecidedZone()
+    return inZone
+}

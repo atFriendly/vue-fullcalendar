@@ -140,6 +140,14 @@
 						this.$(jsEvent.currentTarget).css('box-shadow', '')
 						vm.$emit('event-mouseout', event, jsEvent, view)
 					},
+					eventDragStart: (event, jsEvent, ui, view) => {
+                        this.createUndecidedZone()
+                        vm.$emit('event-dragstart', event, jsEvent, ui, view)
+                    },
+                    eventDragStop: (event, jsEvent, ui, view) => {
+						this.checkDropInUndecidedZone(jsEvent.clientX, jsEvent.clientY)
+                        vm.$emit('event-dragstop', event, jsEvent, ui, view)
+                    },
 					viewRender: (view, element) => {
 						// 六日紅背景
 						this.$(element).find('td.fc-day.fc-sat').css('background-color', '#FFDDDD99')

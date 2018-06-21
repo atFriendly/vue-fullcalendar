@@ -30,5 +30,6 @@ module.exports = {
             titleFormat: 'YYYY MMMD'
         }
     },
-    weekends: true // 顯示周末
+	weekends: true, // 顯示周末
+	showUndecideZone: false // 拖拉行程時顯示未定行程區塊
 }
