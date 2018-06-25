@@ -125,14 +125,18 @@ exports.checkDropInUndecidedZone = (x = 0, y = 0) => {
     const zone = $('#undecided-zone')
     let inZone = false
     if (zone) {
-        let offset = zone.offset()
-        offset.right = zone.width() + offset.left
-        offset.bottom = zone.height() + offset.top
-
-        if (x >= offset.left && y >= offset.top
-            && x <= offset.right && y <= offset.bottom) {
-            inZone = true
-        }
+		try {
+			let offset = zone.offset()
+			offset.right = zone.width() + offset.left
+			offset.bottom = zone.height() + offset.top
+	
+			if (x >= offset.left && y >= offset.top
+				&& x <= offset.right && y <= offset.bottom) {
+				inZone = true
+			}
+		} catch (error) {
+			inZone = false
+		}
     }
     this.destoryUndecidedZone()
     return inZone
