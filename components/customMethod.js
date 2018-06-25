@@ -109,7 +109,7 @@ exports.createUndecidedZone = () => {
         'display': 'block',
         'margin-top': '50px'
     })
-    $(text).text('拖曳至未定')
+    $(text).text('未定拖曳至此')
     zone.appendChild(text)
     $('#calendar')[0].appendChild(zone)
 }
