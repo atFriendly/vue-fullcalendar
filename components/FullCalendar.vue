@@ -154,6 +154,8 @@
 						// 六日紅背景
 						this.$(element).find('td.fc-day.fc-sat').css('background-color', '#FFDDDD99')
                         this.$(element).find('td.fc-day.fc-sun').css('background-color', '#FFDDDD99')
+						// 當天背景
+                        this.$(element).find('td.fc-day.fc-today').css('background-color', '#FCF8E399')
                         // 標題style
                         this.$('div#calendar').find('div.fc-center').css({
                             'cursor': 'pointer',
