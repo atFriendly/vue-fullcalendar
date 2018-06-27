@@ -17,7 +17,7 @@ exports.setTopRightButtons = (buttons = []) => {
     buttons.map(val => {
         const elementPanel = document.createElement('span')
         $(elementPanel).css('position', 'relative')
-        $(elementPanel).attr('name', val.buttonName + 'Panel')
+        $(elementPanel).attr('name', val.id + 'Panel')
 
         const button = document.createElement('button')
         const buttonText = val.text + (val.badge ? ('(' + val.badge + ')') : '')

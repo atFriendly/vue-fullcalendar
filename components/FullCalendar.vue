@@ -82,7 +82,7 @@
                     editable: this.editable,
                     selectable: this.selectable,
                     selectHelper: this.selectHelper,
-                    aspectRatio: 2,
+                    aspectRatio: 2.1,
                     timeFormat: 'HH:mm',
                     events: this.events,
                     eventSources: this.eventSources,
