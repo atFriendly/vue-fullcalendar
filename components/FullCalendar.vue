@@ -240,3 +240,9 @@
         },
     }
 </script>
+<style>
+    .fc-toolbar .fc-left {
+        float: left;
+        position: relative;
+    }
+</style>
