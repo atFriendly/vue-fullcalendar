@@ -13,5 +13,5 @@ td .fc-day.fc-sun {
 /* 修正上方工具列沒有置中的問題 */
 .fc-left {
     float: left;
-    position: absolute;
+    position: relative;
 }
