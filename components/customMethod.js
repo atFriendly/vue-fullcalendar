@@ -1,10 +1,10 @@
 let $, cal
-let that
+let vm
 
 exports.initVar = (jquery, calElement, instance) => {
     $ = jquery
     cal = calElement
-    that = instance
+    vm = instance
 }
 
 /**
@@ -36,7 +36,7 @@ exports.setTopRightButtons = (buttons = []) => {
         }
         $(button).attr('id', val.id)
         $(button).on('click', () => {
-            that.$emit('custom-button-click', { id: val.id })
+            vm.$emit('custom-button-click', { id: val.id })
         })
         elementPanel.appendChild(button)
 
@@ -82,12 +82,12 @@ exports.setTitle = (text) => {
 	$('div.fc-center').attr('title', text)
 	// 點擊標題事件
     $('div.fc-center').on('click', () => {
-        that.$emit('title-click')
+        vm.$emit('title-click')
     })
 }
 
 exports.createUndecidedZone = () => {
-    if (!that.config.showUndecideZone) {
+    if (!vm.config.showUndecideZone) {
         return
     }
     const zone = document.createElement('span')
@@ -119,7 +119,7 @@ exports.destoryUndecidedZone = () => {
 }
 
 exports.checkDropInUndecidedZone = (x = 0, y = 0) => {
-	if (!that.config.showUndecideZone) {
+	if (!vm.config.showUndecideZone) {
         return false
     }
     const zone = $('#undecided-zone')
