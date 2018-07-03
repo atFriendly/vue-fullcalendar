@@ -15,3 +15,9 @@ td .fc-day.fc-sun {
     float: left;
     position: relative;
 }
+
+/* 全天行程列的高度 */
+.fc-agenda-view .fc-day-grid .fc-row {
+    height: 1.7rem !important;
+    min-height: 1.7rem !important;
+}

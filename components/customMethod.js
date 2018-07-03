@@ -77,8 +77,19 @@ exports.updateButton = (id, val = {}) => {
     }
 }
 
-exports.setTitle = (text) => {
-	$('div.fc-center').html('<h3 style="margin: 0px; margin-top: 5px;">' + text + '</h3>')
+exports.setTitle = (text, subtitle) => {
+    const title = document.createElement('div')
+    $(title).html('<h3 style="margin: 0px; margin-top: 5px;">' + text + '</h3>')
+    $('div.fc-center')[0].appendChild(title)
+    if (subtitle) {
+        const sub = document.createElement('div')
+        $(sub).text(subtitle)
+        $(sub).css({
+            'color': '#2C3E50',
+            'font-size': '1rem'
+        })
+        $(title)[0].appendChild(sub)
+    }
 	$('div.fc-center').attr('title', text)
 	// 點擊標題事件
     $('div.fc-center').on('click', () => {
@@ -129,7 +140,7 @@ exports.checkDropInUndecidedZone = (x = 0, y = 0) => {
 			let offset = zone.offset()
 			offset.right = zone.width() + offset.left
 			offset.bottom = zone.height() + offset.top
-	
+
 			if (x >= offset.left && y >= offset.top
 				&& x <= offset.right && y <= offset.bottom) {
 				inZone = true
