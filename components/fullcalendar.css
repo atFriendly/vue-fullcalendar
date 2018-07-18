@@ -5,6 +5,10 @@
     padding-left: 2px;
 }
 
+.fc-event .fc-bg {
+	opacity: 0 !important;
+}
+
 td .fc-day.fc-sat,
 td .fc-day.fc-sun {
     background-color: #FFDDDD99
