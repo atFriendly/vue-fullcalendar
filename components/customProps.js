@@ -27,7 +27,7 @@ module.exports = {
             titleFormat: '\ ' // 'YYYY MMMDo'
         },
         day: {
-            titleFormat: 'YYYY MMMD'
+            titleFormat: '\ '
         }
     },
 	weekends: true, // 顯示周末
