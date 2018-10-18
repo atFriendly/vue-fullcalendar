@@ -20,10 +20,32 @@ exports.setTopRightButtons = (buttons = []) => {
         $(elementPanel).attr('name', val.id + 'Panel')
 
         const button = document.createElement('button')
-        const buttonText = val.text + (val.badge ? ('(' + val.badge + ')') : '')
-        $(button).attr('data-orig-text', val.text)
-        $(button).text(buttonText)
-        $(button).addClass(val.class ? val.class : 'el-button el-button--danger el-button-mini')
+        let buttonText = val.text + (val.badge ? ('(' + val.badge + ')') : '')
+        let classNames = val.class ? val.class : 'el-button el-button--danger el-button-mini'
+        // console.log('val:', val)
+        if (val.isMobile && val.isMobile === true) {
+            // classNames = 'el-button el-button--danger el-button-mini is-circle' // circle效果不好
+            buttonText = val.badge || ''
+            if (val.iconClass) {
+                const span = document.createElement('span')
+                const icon = document.createElement('i')
+                $(icon).addClass(val.iconClass)
+                $(icon).attr('style', 'padding-right: 2px')
+                const text = document.createElement('span')
+                $(text).text(buttonText)
+                span.appendChild(icon)
+                span.appendChild(text)
+                button.appendChild(span)
+            } else {
+                $(button).text(buttonText)
+            }
+            $(button).attr('data-orig-text', val.text)
+            $(button).addClass(classNames)
+        } else {
+            $(button).attr('data-orig-text', val.text)
+            $(button).text(buttonText)
+            $(button).addClass(classNames)
+        }
 
         if (val.hasOwnProperty('enable')) {
             if (val.enable === false) {
