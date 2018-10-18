@@ -67,6 +67,64 @@ exports.setTopRightButtons = (buttons = []) => {
 }
 
 /**
+ * 組成左上角的按鈕群
+ * * button格式: { text, id, badge, class, visible, enable }
+ * * event: 統一呼叫 customButtonClick (button { id: BUTTON_ID })
+ */
+exports.setTopLeftButtons = (buttons = []) => {
+    $(cal).find('div.fc-left').empty()
+    buttons.map(val => {
+        const elementPanel = document.createElement('span')
+        $(elementPanel).css('position', 'relative')
+        $(elementPanel).attr('name', val.id + 'Panel')
+
+        const button = document.createElement('button')
+        let classNames = val.class ? val.class : 'el-button el-button--danger el-button-mini'
+        // console.log('val:', val)
+        // if (val.isMobile && val.isMobile === true) {
+        if (val.iconClass) {
+            const span = document.createElement('span')
+            const icon = document.createElement('i')
+            $(icon).addClass(val.iconClass)
+            span.appendChild(icon)
+            if (val.text) {
+                $(icon).attr('style', 'padding-right: 2px')
+                const text = document.createElement('span')
+                $(text).text(val.text)
+                span.appendChild(text)
+            }
+            button.appendChild(span)
+        } else {
+            $(button).text(buttonText)
+        }
+        $(button).attr('data-orig-text', val.text)
+        $(button).addClass(classNames)
+        // } else {
+        //     $(button).attr('data-orig-text', val.text)
+        //     $(button).text(buttonText)
+        //     $(button).addClass(classNames)
+        // }
+
+        if (val.hasOwnProperty('enable')) {
+            if (val.enable === false) {
+                $(button).attr('disabled', 'disabled')
+                $(button).addClass('is-disabled')
+            }
+        }
+        if (val.hasOwnProperty('visible')) {
+            $(button).css('display', val.visible === true ? 'inline-block' : 'none')
+        }
+        $(button).attr('id', val.id)
+        $(button).on('click', () => {
+            vm.$emit('custom-button-click', { id: val.id })
+        })
+        elementPanel.appendChild(button)
+
+        $(cal).find('div.fc-left')[0].appendChild(elementPanel)
+    })
+}
+
+/**
  * 更新自訂按鈕的文字、通知氣泡等…
  */
 exports.updateButton = (id, val = {}) => {
