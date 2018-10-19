@@ -73,15 +73,11 @@ exports.setTopRightButtons = (buttons = []) => {
  */
 exports.setTopLeftButtons = (buttons = []) => {
     $(cal).find('div.fc-left').empty()
+    let group = null
     buttons.map(val => {
-        const elementPanel = document.createElement('span')
-        $(elementPanel).css('position', 'relative')
-        $(elementPanel).attr('name', val.id + 'Panel')
-
         const button = document.createElement('button')
         let classNames = val.class ? val.class : 'el-button el-button--danger el-button-mini'
         // console.log('val:', val)
-        // if (val.isMobile && val.isMobile === true) {
         if (val.iconClass) {
             const span = document.createElement('span')
             const icon = document.createElement('i')
@@ -95,15 +91,10 @@ exports.setTopLeftButtons = (buttons = []) => {
             }
             button.appendChild(span)
         } else {
-            $(button).text(buttonText)
+            $(button).text(val.text || '')
         }
-        $(button).attr('data-orig-text', val.text)
+        $(button).attr('data-orig-text', val.text || '')
         $(button).addClass(classNames)
-        // } else {
-        //     $(button).attr('data-orig-text', val.text)
-        //     $(button).text(buttonText)
-        //     $(button).addClass(classNames)
-        // }
 
         if (val.hasOwnProperty('enable')) {
             if (val.enable === false) {
@@ -115,13 +106,37 @@ exports.setTopLeftButtons = (buttons = []) => {
             $(button).css('display', val.visible === true ? 'inline-block' : 'none')
         }
         $(button).attr('id', val.id)
-        $(button).on('click', () => {
-            vm.$emit('custom-button-click', { id: val.id })
+        $(button).on('click', (event) => {
+            vm.$emit('custom-button-click', { event, id: val.id })
         })
-        elementPanel.appendChild(button)
 
-        $(cal).find('div.fc-left')[0].appendChild(elementPanel)
+        if (val.groupName) {
+            if (group) {
+                if ($(group).attr('name') !== (val.groupName + '_Group')) {
+                    $(cal).find('div.fc-left')[0].appendChild(group)
+                    group = null
+                }
+            }
+            if (!group) {
+                group = document.createElement('span')
+                $(group).addClass('el-button-group')
+                $(group).css('position', 'relative')
+                $(group).attr('name', val.groupName + '_Group')
+            }
+            group.appendChild(button)
+        } else {
+            if (group) {
+                $(cal).find('div.fc-left')[0].appendChild(group)
+                group = null
+            } else {
+                $(cal).find('div.fc-left')[0].appendChild(button)
+            }
+        }
     })
+    if (group) {
+        $(cal).find('div.fc-left')[0].appendChild(group)
+        group = null
+    }
 }
 
 /**
